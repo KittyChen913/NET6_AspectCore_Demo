@@ -17,8 +17,6 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
-        await Task.Delay(3000);
-
         return weatherService.GetWeatherForecast();
     }
 

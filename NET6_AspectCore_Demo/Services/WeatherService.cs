@@ -21,7 +21,6 @@ public class WeatherService : IWeatherService
 
     public string GetUserName()
     {
-
         return "Kitty Chen";
     }
 }
