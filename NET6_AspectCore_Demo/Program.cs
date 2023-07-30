@@ -1,3 +1,4 @@
+using AspectCore.Configuration;
 using AspectCore.Extensions.DependencyInjection;
 using AspectCore_Scrutor_DemoProject.Services;
 using NET6_AspectCore_Demo;
@@ -15,7 +16,8 @@ builder.Services.AddScoped<IWeatherService, WeatherService>();
 builder.Services.AddScoped<IWeatherRepository, WeatherRepository>();
 builder.Services.AddScoped<SingleInterceptorAttribute>();
 builder.Services.AddScoped<GlobalInterceptorAttribute>();
-builder.Services.ConfigureDynamicProxy();
+builder.Services.ConfigureDynamicProxy(config => { config.Interceptors.AddServiced<GlobalInterceptorAttribute>(Predicates.ForService("*Repository")); });
+
 //Replace the default IOC container with the AspectCore one.
 builder.Host.UseServiceProviderFactory(new DynamicProxyServiceProviderFactory());
 
