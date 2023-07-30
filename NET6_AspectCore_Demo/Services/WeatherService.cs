@@ -2,25 +2,20 @@
 
 public class WeatherService : IWeatherService
 {
+    private readonly IWeatherRepository _weatherRepository;
 
-    private static readonly string[] Summaries = new[]
+    public WeatherService(IWeatherRepository weatherRepository)
     {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        this._weatherRepository = weatherRepository;
+    }
 
     public IEnumerable<WeatherForecast> GetWeatherForecast()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        return _weatherRepository.GetWeatherForecast();
     }
 
     public string GetUserName()
     {
-        return "Kitty Chen";
+        return _weatherRepository.GetUserName();
     }
 }
