@@ -2,11 +2,11 @@
 
 namespace NET6_AspectCore_Demo;
 
-public class CustomInterceptorAttribute : AbstractInterceptorAttribute
+public class SingleInterceptorAttribute : AbstractInterceptorAttribute
 {
-    private readonly ILogger<CustomInterceptorAttribute> logger;
+    private readonly ILogger<SingleInterceptorAttribute> logger;
 
-    public CustomInterceptorAttribute(ILogger<CustomInterceptorAttribute> logger)
+    public SingleInterceptorAttribute(ILogger<SingleInterceptorAttribute> logger)
     {
         this.logger = logger;
     }

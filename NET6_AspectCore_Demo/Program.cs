@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IWeatherService, WeatherService>();
-builder.Services.AddScoped<CustomInterceptorAttribute>();
+builder.Services.AddScoped<SingleInterceptorAttribute>();
 builder.Services.ConfigureDynamicProxy();
 //Replace the default IOC container with the AspectCore one.
 builder.Host.UseServiceProviderFactory(new DynamicProxyServiceProviderFactory());
