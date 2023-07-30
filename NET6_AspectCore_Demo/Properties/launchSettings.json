@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "AspectCore_Scrutor_DemoProject": {
+    "NET6_AspectCore_Demo": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

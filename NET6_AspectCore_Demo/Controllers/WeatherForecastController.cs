@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AspectCore_Scrutor_DemoProject.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]/[action]")]
 public class WeatherForecastController : ControllerBase
 {
     private readonly IWeatherService weatherService;
@@ -15,13 +15,13 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public async Task<IEnumerable<WeatherForecast>> Get()
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast()
     {
         return weatherService.GetWeatherForecast();
     }
 
     [HttpPost(Name = "GetUserName")]
-    public async Task<string> Post()
+    public async Task<string> GetUserName()
     {
         return weatherService.GetUserName();
     }
