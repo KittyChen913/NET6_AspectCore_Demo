@@ -1,5 +1,6 @@
 ﻿using AspectCore.DependencyInjection;
 using AspectCore.DynamicProxy;
+using System.Reflection;
 
 namespace NET6_AspectCore_Demo;
 
@@ -10,6 +11,12 @@ public class GlobalPropertyInjectionInterceptorAttribute : AbstractInterceptorAt
 
     public override async Task Invoke(AspectContext context, AspectDelegate next)
     {
+        if (context.ServiceMethod.GetCustomAttributes<DisableGlobalInterceptor>(inherit: true).Any())
+        {
+            await next(context);
+            return;
+        }
+
         try
         {
             Logger.LogInformation("Invoking Property Injection Global Interceptor");
@@ -22,3 +29,4 @@ public class GlobalPropertyInjectionInterceptorAttribute : AbstractInterceptorAt
         }
     }
 }
+public sealed class DisableGlobalInterceptor : Attribute { }
