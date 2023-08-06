@@ -8,4 +8,5 @@ public interface IWeatherService
     [ServiceInterceptor(typeof(SingleInterceptorAttribute))]
     IEnumerable<WeatherForecast> GetWeatherForecast();
     string GetUserName();
+    string GetCityList();
 }

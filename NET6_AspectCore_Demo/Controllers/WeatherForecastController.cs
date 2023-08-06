@@ -25,4 +25,10 @@ public class WeatherForecastController : ControllerBase
     {
         return weatherService.GetUserName();
     }
+
+    [HttpPost(Name = "GetCityList")]
+    public async Task<string> GetCityList()
+    {
+        return weatherService.GetCityList();
+    }
 }

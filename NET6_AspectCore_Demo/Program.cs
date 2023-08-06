@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IWeatherService, WeatherService>();
 builder.Services.AddScoped<IWeatherRepository, WeatherRepository>();
+builder.Services.AddScoped<ICityAdapter, CityAdapter>();
 builder.Services.AddScoped<SingleInterceptorAttribute>();
 builder.Services.AddScoped<GlobalInterceptorAttribute>();
 builder.Services.ConfigureDynamicProxy(config => { config.Interceptors.AddServiced<GlobalInterceptorAttribute>(Predicates.ForService("*Repository")); });
