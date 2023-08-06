@@ -17,8 +17,11 @@ builder.Services.AddScoped<IWeatherRepository, WeatherRepository>();
 builder.Services.AddScoped<ICityAdapter, CityAdapter>();
 builder.Services.AddScoped<SingleInterceptorAttribute>();
 builder.Services.AddScoped<GlobalConstructorInjectionInterceptorAttribute>();
-builder.Services.ConfigureDynamicProxy(config => { config.Interceptors.AddServiced<GlobalConstructorInjectionInterceptorAttribute>(Predicates.ForService("*Repository")); });
-
+builder.Services.ConfigureDynamicProxy(config =>
+{
+    config.Interceptors.AddServiced<GlobalConstructorInjectionInterceptorAttribute>(Predicates.ForService("*Repository"));
+    config.Interceptors.AddTyped<GlobalPropertyInjectionInterceptorAttribute>(method => method.Name.EndsWith("List"));
+});
 //Replace the default IOC container with the AspectCore one.
 builder.Host.UseServiceProviderFactory(new DynamicProxyServiceProviderFactory());
 
